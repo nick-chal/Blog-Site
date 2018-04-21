@@ -6,7 +6,12 @@
     <div class="ui clearing divider"></div>
     <div class="ui top attached">
         <div class="item">
+            <% if(blog.image != ""){ %>
             <img class="ui centered rounded image imagerace segment" src="<%= blog.image%>" >
+            <% } else{ %>
+            <img class="ui centered rounded image imagerace segment" style="height: 200px; width: 350px" src="http://us.yuneec.com/c.4198727/sca-dev-vinson/img/no_image_available.jpeg" >
+            <% } %>
+
             <div class="content">
                 <div class="description">
                     <p><%- blog.body%></p>

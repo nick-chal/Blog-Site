@@ -7,14 +7,29 @@
             <div class="item">
                 <a href="/blogs/<%=blog._id%>">
                     <div class="image">
-                        <img src="<%= blog.image%>" >
+                        <% if(blog.image != ""){ %>
+                        <img src="<%= blog.image %>" >
+                        <% } else{ %>
+                        <img src="http://us.yuneec.com/c.4198727/sca-dev-vinson/img/no_image_available.jpeg" >
+                        <% } %>
                     </div>
                 </a>
                 <div class="content">
                     <h2 class="header"> <%= blog.title%></h2>
                     <div class="meta"><span> <%= blog.created.toDateString()%></span></div>
-                    <div class="description"><p><%- blog.body.substring(0, 75)%><a class="mylink" href="/blogs/<%=blog._id%>">... Read More</p></div>
-                   <!-- <div class="extra">
+                    <div class="description">
+                        <p>
+                            <% if(blog.body.length > 150){ %>
+                            <%- blog.body.substring(0, 150)%>...
+                            <a class="mylink" href="/blogs/<%=blog._id%>"><br>Full Blog</a>
+                            <% } else{ %>
+                            <%- blog.body%>
+                            <a class="mylink" href="/blogs/<%=blog._id%>"><br>Ful Blog</a>
+                            <% } %>
+
+                        </p>
+                    </div>
+                    <!-- <div class="extra">
                         <a class="ui floated basic violet button" href="/blogs/<%=blog._id%>">
                             Read More
                             <i class="right chevron icon"></i>
