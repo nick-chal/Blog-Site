@@ -2,18 +2,23 @@
 
 <div class="ui main fixed container segment">
     <div class="ui huge header"><%= blog.title%></div>
+    <span>-<%= blog.created.toDateString()%></span>
+    <div class="ui clearing divider"></div>
     <div class="ui top attached">
         <div class="item">
-            <img class="ui centered rounded image" src="<%= blog.image%>" >
+            <img class="ui centered rounded image imagerace segment" src="<%= blog.image%>" >
             <div class="content">
-                <span> <%= blog.created.toDateString()%></span>
-            </div>
-            <div class="description">
-                <p><%- blog.body%></p>
+                <div class="description">
+                    <p><%- blog.body%></p>
+                </div>
+                <a href="/blogs/<%=blog._id%>/edit"><button class="ui yellow basic button">Edit Blog</button></a>
+                <form id="delete" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+                    <button class="ui red basic button">Delete Blog</button>
+                </form>
             </div>
         </div>
     </div>
-
 </div>
+<br><br>
 
 <% include partials/footer.ejs%>

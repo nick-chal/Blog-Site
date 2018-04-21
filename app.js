@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
+var expressSanitizer = require('express-sanitizer');
 
 mongoose.connect('mongodb://localhost/blogSite');
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride("_method"));
+app.use(expressSanitizer());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

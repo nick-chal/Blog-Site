@@ -10,6 +10,7 @@
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
+    "express-sanitizer": "^1.0.4",
     "http-errors": "~1.6.2",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.15",

@@ -6,6 +6,38 @@
     margin-top: 7.0em !important;
 }
 
+#delete{
+    display: inline; !important;
+}
+
+.segment{
+    margin: auto 10px; !important;
+}
+
+span{
+    opacity: .75;
+}
+
+.mylink{
+    font-size: small;
+}
+
+.description{
+    font-family: Verdana;
+    font-size: medium;
+}
+
+.imagerace{
+    max-width: 1500px;
+    max-height: 500px;
+}
+
+.image>img{
+    width: 250px;
+    height: 150px;
+    margin-right: 15px;
+}
+
 
 
 a {

@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var expressSanitizer = require('express-sanitizer');
+
+router.use(expressSanitizer());
 
 //MONGOOSE/Schema model CONIFIG
 var blogSchema = new mongoose.Schema({
@@ -41,6 +44,7 @@ router.get('/blogs/new', function (req, res, next) {
 
 //CREATE
 router.post('/blogs', function (req, res, next) {
+    req.body.blogBody = req.sanitize(req.body.blogBody);
     var blog = {
         title: req.body.blogName,
         image: req.body.blogImage,
@@ -66,7 +70,7 @@ router.get("/blogs/:id", function (req, res, next) {
     });
 });
 
-//EDIT Route
+//UPDATE Route
 router.get("/blogs/:id/edit", function (req, res, next) {
     Blog.findById(req.params.id, function (err, foundBlog) {
         if(err){
@@ -78,6 +82,7 @@ router.get("/blogs/:id/edit", function (req, res, next) {
 });
 
 router.put("/blogs/:id", function (req, res, next) {
+    req.body.blogBody = req.sanitize(req.body.blogBody);
     var blog = {
         title: req.body.blogName,
         image: req.body.blogImage,
@@ -92,5 +97,17 @@ router.put("/blogs/:id", function (req, res, next) {
       }
    });
 });
+
+//DESTROY ROUTE
+router.delete("/blogs/:id", function (req, res, next) {
+    Blog.findByIdAndRemove(req.params.id, function (err) {
+       if(err){
+           console.log("error while delete");
+       } else {
+           res.redirect("/blogs");
+       }
+    });
+});
+
 
 module.exports = router;
